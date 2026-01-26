@@ -85,6 +85,16 @@ SELECT code,
        SUM(population) OVER () AS world_population
 FROM country;
 
+SELECT code,
+       name,
+       continent,
+       region,
+       population,
+       SUM(population) OVER (PARTITION BY continent),
+       SUM(population) OVER (PARTITION BY continent, region)
+FROM country
+order by continent;
+
 
 -- ===============================
 -- RUNNING / CUMULATIVE SUM
